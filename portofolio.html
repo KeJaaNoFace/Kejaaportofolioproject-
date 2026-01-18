@@ -1,0 +1,933 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO META TAGS -->
+    <title>KeJaa | Professional</title>
+    <meta name="description" content="Muhammad Keyzha Putra Setiawan (KeJaa) - Freelance Programmer spesialis pembuatan website modern, responsive, dan interaktif. Berpengalaman dalam React, TypeScript, dan UI/UX development.">
+    <meta name="keywords" content="frontend developer, freelance programmer, jasa pembuatan website, React developer, web developer Indonesia, Jawa Timur, Gresik">
+    <meta name="author" content="Muhammad Keyzha Putra Setiawan">
+    <meta property="og:title" content="KeJaa | Professional Frontend Developer">
+    <meta property="og:description" content="Freelance Programmer spesialis pembuatan website modern dan interaktif">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://kejaa-portfolio.vercel.app">
+    <meta property="og:image" content="https://i.imghippo.com/files/YaPQ3657YE.jpg">
+    
+    <!-- FAVICON -->
+    <link rel="icon" type="image/x-icon" href="https://img.icons8.com/color/96/000000/code.png">
+    
+    <!-- TAILWIND CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#3B82F6',
+                        dark: '#0F172A',
+                        light: '#F8FAFC',
+                        gray: {
+                            750: '#2D3748',
+                            850: '#1A202C'
+                        }
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'glow': 'glow 2s ease-in-out infinite alternate',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' }
+                        },
+                        glow: {
+                            'from': { boxShadow: '0 0 10px #3B82F6, 0 0 20px #3B82F6' },
+                            'to': { boxShadow: '0 0 20px #3B82F6, 0 0 30px #3B82F6' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- GSAP + SCROLLTRIGGER -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    
+    <!-- FONT AWESOME -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- CUSTOM STYLES -->
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background-color: #0F172A;
+            color: #F8FAFC;
+            overflow-x: hidden;
+        }
+        
+        /* CUSTOM SCROLLBAR */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #1E293B;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: #3B82F6;
+            border-radius: 5px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: #2563EB;
+        }
+        
+        /* PROTECTION LAYER */
+        .protection-layer {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: transparent;
+            z-index: 9999;
+            pointer-events: none;
+            user-select: none;
+        }
+        
+        /* HERO ANIMATION */
+        .hero-title span {
+            display: inline-block;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        
+        /* CARD HOVER EFFECT */
+        .service-card {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            background: linear-gradient(145deg, #1E293B, #0F172A);
+            border: 1px solid #334155;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            border-color: #3B82F6;
+            box-shadow: 0 20px 40px rgba(59, 130, 246, 0.15);
+        }
+        
+        /* SKILL BAR ANIMATION */
+        .skill-bar {
+            width: 0;
+            transition: width 1.5s ease-out;
+        }
+        
+        /* FLOATING ELEMENTS */
+        .floating-element {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .floating-element:nth-child(2) {
+            animation-delay: 1s;
+        }
+        
+        .floating-element:nth-child(3) {
+            animation-delay: 2s;
+        }
+        
+        /* TYPEWRITER EFFECT */
+        .typewriter {
+            overflow: hidden;
+            border-right: 3px solid #3B82F6;
+            white-space: nowrap;
+            animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+        }
+        
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+        
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: #3B82F6 }
+        }
+    </style>
+    
+    <!-- CODE PROTECTION SCRIPT -->
+    <script>
+        // Anti Copy & Inspect Protection
+        document.addEventListener('DOMContentLoaded', function() {
+            // Disable right click
+            document.addEventListener('contextmenu', function(e) {
+                e.preventDefault();
+                return false;
+            });
+            
+            // Disable keyboard shortcuts
+            document.addEventListener('keydown', function(e) {
+                // Disable F12, Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+U
+                if (
+                    e.keyCode === 123 || 
+                    (e.ctrlKey && e.shiftKey && e.keyCode === 73) ||
+                    (e.ctrlKey && e.shiftKey && e.keyCode === 74) ||
+                    (e.ctrlKey && e.keyCode === 85)
+                ) {
+                    e.preventDefault();
+                    return false;
+                }
+            });
+            
+            // Clear console on open
+            if (window.console) {
+                console.log = function() {};
+                console.warn = function() {};
+                console.error = function() {};
+                console.info = function() {};
+            }
+            
+            // Anti-curl protection
+            if (navigator.userAgent.includes('curl') || 
+                navigator.userAgent.includes('wget') ||
+                navigator.userAgent.includes('PostmanRuntime')) {
+                document.body.innerHTML = '<div class="flex items-center justify-center h-screen bg-dark text-white"><div class="text-center"><h1 class="text-2xl mb-4">Access Restricted</h1><p>Please access via browser</p></div></div>';
+            }
+        });
+    </script>
+</head>
+<body class="bg-dark text-light">
+    <!-- PROTECTION LAYER -->
+    <div class="protection-layer"></div>
+    
+    <!-- NAVBAR -->
+    <nav class="fixed top-0 w-full bg-gray-850/90 backdrop-blur-lg z-50 border-b border-gray-750">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <!-- LOGO -->
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 bg-gradient-to-br from-primary to-cyan-400 rounded-lg flex items-center justify-center">
+                        <i class="fas fa-code text-white text-xl"></i>
+                    </div>
+                    <span class="text-xl font-bold bg-gradient-to-r from-primary to-cyan-400 bg-clip-text text-transparent">KeJaa</span>
+                </div>
+                
+                <!-- NAV LINKS -->
+                <div class="hidden md:flex space-x-8">
+                    <a href="#home" class="hover:text-primary transition-colors">Beranda</a>
+                    <a href="#about" class="hover:text-primary transition-colors">Tentang</a>
+                    <a href="#skills" class="hover:text-primary transition-colors">Keahlian</a>
+                    <a href="#services" class="hover:text-primary transition-colors">Layanan</a>
+                    <a href="#contact" class="hover:text-primary transition-colors">Kontak</a>
+                </div>
+                
+                <!-- MOBILE MENU BUTTON -->
+                <button id="menuBtn" class="md:hidden text-2xl">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+            
+            <!-- MOBILE MENU -->
+            <div id="mobileMenu" class="md:hidden hidden mt-4 pb-4">
+                <div class="flex flex-col space-y-4">
+                    <a href="#home" class="hover:text-primary transition-colors py-2">Beranda</a>
+                    <a href="#about" class="hover:text-primary transition-colors py-2">Tentang</a>
+                    <a href="#skills" class="hover:text-primary transition-colors py-2">Keahlian</a>
+                    <a href="#services" class="hover:text-primary transition-colors py-2">Layanan</a>
+                    <a href="#contact" class="hover:text-primary transition-colors py-2">Kontak</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- HERO SECTION -->
+    <section id="home" class="min-h-screen flex items-center pt-20">
+        <div class="container mx-auto px-6 py-12">
+            <div class="flex flex-col lg:flex-row items-center justify-between">
+                <!-- HERO CONTENT -->
+                <div class="lg:w-1/2 mb-12 lg:mb-0">
+                    <div class="mb-6">
+                        <h1 class="text-4xl md:text-6xl font-bold mb-4 hero-title">
+                            <span class="block">Halo, Saya</span>
+                            <span class="block bg-gradient-to-r from-primary to-cyan-400 bg-clip-text text-transparent">Muhammad Keyzha</span>
+                            <span class="block text-2xl md:text-3xl mt-2">Freelance Programmer</span>
+                        </h1>
+                        <p class="text-gray-300 text-lg md:text-xl mb-8 max-w-2xl">
+                            Spesialis dalam pembuatan website <span class="text-primary font-semibold">modern, responsive, dan interaktif</span>. 
+                            Mengubah ide menjadi kode dengan presisi dan kreativitas.
+                        </p>
+                    </div>
+                    
+                    <div class="flex flex-wrap gap-4">
+                        <a href="#contact" class="px-8 py-3 bg-primary text-white rounded-lg font-semibold hover:bg-blue-700 transition-all hover:scale-105 shadow-lg shadow-primary/30">
+                            <i class="fas fa-paper-plane mr-2"></i> Mulai Project
+                        </a>
+                        <a href="#services" class="px-8 py-3 border border-gray-600 text-gray-300 rounded-lg font-semibold hover:border-primary hover:text-primary transition-all">
+                            <i class="fas fa-list mr-2"></i> Lihat Layanan
+                        </a>
+                    </div>
+                    
+                    <!-- STATS -->
+                    <div class="flex flex-wrap gap-8 mt-12">
+                        <div class="text-center">
+                            <div class="text-3xl font-bold text-primary">50+</div>
+                            <div class="text-gray-400">Project Selesai</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-3xl font-bold text-primary">100%</div>
+                            <div class="text-gray-400">Kepuasan Klien</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-3xl font-bold text-primary">2+</div>
+                            <div class="text-gray-400">Tahun Pengalaman</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- HERO IMAGE/GRAPHIC -->
+                <div class="lg:w-1/2 relative">
+                    <div class="relative w-full max-w-lg mx-auto">
+                        <!-- FLOATING ELEMENTS -->
+                        <div class="absolute -top-6 -left-6 w-32 h-32 bg-primary/20 rounded-full blur-xl floating-element"></div>
+                        <div class="absolute -bottom-6 -right-6 w-40 h-40 bg-cyan-500/20 rounded-full blur-xl floating-element"></div>
+                        
+                        <!-- MAIN PROFILE CARD -->
+                        <div class="relative bg-gradient-to-br from-gray-850 to-gray-900 border border-gray-700 rounded-2xl p-8 shadow-2xl overflow-hidden">
+                            <div class="absolute top-0 right-0 w-32 h-32 bg-primary/10 rounded-full -translate-y-16 translate-x-16"></div>
+                            <div class="absolute bottom-0 left-0 w-40 h-40 bg-cyan-500/10 rounded-full translate-y-20 -translate-x-20"></div>
+                            
+                            <div class="relative z-10">
+                                <div class="flex items-center mb-6">
+                                    <div class="w-24 h-24 rounded-full border-4 border-primary overflow-hidden mr-6">
+                                        <img src="https://i.imghippo.com/files/YaPQ3657YE.jpg" alt="KeJaa Logo" class="w-full h-full object-cover" onerror="this.src='https://ui-avatars.com/api/?name=KeJaa&background=3B82F6&color=fff&bold=true&size=200'">
+                                    </div>
+                                    <div>
+                                        <h3 class="text-2xl font-bold">KeJaa</h3>
+                                        <p class="text-gray-400">Frontend Developer</p>
+                                        <div class="flex items-center mt-2">
+                                            <i class="fas fa-map-marker-alt text-primary mr-2"></i>
+                                            <span class="text-sm">Gresik, Jawa Timur</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <p class="text-gray-300 mb-6">
+                                    "Membantu bisnis dan individu membangun kehadiran digital yang kuat melalui website yang cepat, indah, dan fungsional."
+                                </p>
+                                
+                                <div class="flex flex-wrap gap-3">
+                                    <span class="px-3 py-1 bg-gray-800 rounded-full text-sm">React.js</span>
+                                    <span class="px-3 py-1 bg-gray-800 rounded-full text-sm">TypeScript</span>
+                                    <span class="px-3 py-1 bg-gray-800 rounded-full text-sm">Tailwind CSS</span>
+                                    <span class="px-3 py-1 bg-gray-800 rounded-full text-sm">GSAP</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- ABOUT SECTION -->
+    <section id="about" class="py-20 bg-gray-850">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Tentang Saya</h2>
+                <div class="w-24 h-1 bg-primary mx-auto mb-6"></div>
+                <p class="text-gray-400 max-w-3xl mx-auto">Perjalanan saya dalam dunia programming dan dedikasi terhadap pengembangan web modern</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h3 class="text-2xl font-bold mb-6">Passion dalam <span class="text-primary">Kode & Desain</span></h3>
+                    <p class="text-gray-300 mb-6">
+                        Sebagai seorang <span class="text-primary font-semibold">Freelance Programmer</span>, saya fokus pada pembuatan website yang tidak hanya berfungsi dengan baik, tetapi juga memberikan pengalaman pengguna yang luar biasa.
+                    </p>
+                    <p class="text-gray-300 mb-6">
+                        Saya percaya bahwa website yang baik adalah kombinasi antara <span class="text-primary font-semibold">teknologi yang solid</span> dan <span class="text-primary font-semibold">desain yang intuitif</span>. Setiap project saya tangani dengan perhatian terhadap detail dan komitmen terhadap kualitas tertinggi.
+                    </p>
+                    <p class="text-gray-300">
+                        Berbasis di <span class="text-primary font-semibold">Gresik, Jawa Timur</span>, saya telah membantu berbagai klien dari startup hingga bisnis mapan dalam membangun kehadiran digital mereka.
+                    </p>
+                </div>
+                
+                <div class="relative">
+                    <div class="grid grid-cols-2 gap-6">
+                        <div class="bg-gray-800 rounded-xl p-6 border border-gray-700 hover:border-primary transition-all service-card">
+                            <div class="text-primary text-3xl mb-4">
+                                <i class="fas fa-laptop-code"></i>
+                            </div>
+                            <h4 class="text-xl font-bold mb-2">Web Development</h4>
+                            <p class="text-gray-400">Website custom dengan teknologi terbaru</p>
+                        </div>
+                        <div class="bg-gray-800 rounded-xl p-6 border border-gray-700 hover:border-primary transition-all service-card">
+                            <div class="text-primary text-3xl mb-4">
+                                <i class="fas fa-mobile-alt"></i>
+                            </div>
+                            <h4 class="text-xl font-bold mb-2">Responsive Design</h4>
+                            <p class="text-gray-400">Tampilan optimal di semua device</p>
+                        </div>
+                        <div class="bg-gray-800 rounded-xl p-6 border border-gray-700 hover:border-primary transition-all service-card">
+                            <div class="text-primary text-3xl mb-4">
+                                <i class="fas fa-bolt"></i>
+                            </div>
+                            <h4 class="text-xl font-bold mb-2">Performance</h4>
+                            <p class="text-gray-400">Website cepat dan optimasi SEO</p>
+                        </div>
+                        <div class="bg-gray-800 rounded-xl p-6 border border-gray-700 hover:border-primary transition-all service-card">
+                            <div class="text-primary text-3xl mb-4">
+                                <i class="fas fa-headset"></i>
+                            </div>
+                            <h4 class="text-xl font-bold mb-2">Dukungan Penuh</h4>
+                            <p class="text-gray-400">Support & maintenance berkelanjutan</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- SKILLS SECTION -->
+    <section id="skills" class="py-20">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Keahlian Teknis</h2>
+                <div class="w-24 h-1 bg-primary mx-auto mb-6"></div>
+                <p class="text-gray-400 max-w-3xl mx-auto">Teknologi dan tools yang saya kuasai untuk memberikan hasil terbaik</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-12">
+                <!-- TECHNICAL SKILLS -->
+                <div>
+                    <h3 class="text-2xl font-bold mb-8">Technical Stack</h3>
+                    
+                    <div class="space-y-6">
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="font-semibold">React.js & Next.js</span>
+                                <span class="text-primary">95%</span>
+                            </div>
+                            <div class="h-2 bg-gray-800 rounded-full overflow-hidden">
+                                <div class="skill-bar h-full bg-gradient-to-r from-primary to-cyan-400" data-width="95"></div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="font-semibold">TypeScript / JavaScript</span>
+                                <span class="text-primary">90%</span>
+                            </div>
+                            <div class="h-2 bg-gray-800 rounded-full overflow-hidden">
+                                <div class="skill-bar h-full bg-gradient-to-r from-primary to-cyan-400" data-width="90"></div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="font-semibold">Tailwind CSS & Styled Components</span>
+                                <span class="text-primary">92%</span>
+                            </div>
+                            <div class="h-2 bg-gray-800 rounded-full overflow-hidden">
+                                <div class="skill-bar h-full bg-gradient-to-r from-primary to-cyan-400" data-width="92"></div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="font-semibold">GSAP & Animation Libraries</span>
+                                <span class="text-primary">88%</span>
+                            </div>
+                            <div class="h-2 bg-gray-800 rounded-full overflow-hidden">
+                                <div class="skill-bar h-full bg-gradient-to-r from-primary to-cyan-400" data-width="88"></div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="font-semibold">REST API & GraphQL</span>
+                                <span class="text-primary">85%</span>
+                            </div>
+                            <div class="h-2 bg-gray-800 rounded-full overflow-hidden">
+                                <div class="skill-bar h-full bg-gradient-to-r from-primary to-cyan-400" data-width="85"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- TOOLS & OTHER -->
+                <div>
+                    <h3 class="text-2xl font-bold mb-8">Tools & Lainnya</h3>
+                    
+                    <div class="grid grid-cols-2 gap-6">
+                        <div class="bg-gray-800/50 rounded-xl p-5 border border-gray-700">
+                            <div class="text-primary text-2xl mb-3">
+                                <i class="fab fa-git-alt"></i>
+                            </div>
+                            <h4 class="font-bold mb-1">Git & GitHub</h4>
+                            <p class="text-gray-400 text-sm">Version control & collaboration</p>
+                        </div>
+                        <div class="bg-gray-800/50 rounded-xl p-5 border border-gray-700">
+                            <div class="text-primary text-2xl mb-3">
+                                <i class="fas fa-paint-brush"></i>
+                            </div>
+                            <h4 class="font-bold mb-1">UI/UX Design</h4>
+                            <p class="text-gray-400 text-sm">Figma & Adobe XD</p>
+                        </div>
+                        <div class="bg-gray-800/50 rounded-xl p-5 border border-gray-700">
+                            <div class="text-primary text-2xl mb-3">
+                                <i class="fas fa-rocket"></i>
+                            </div>
+                            <h4 class="font-bold mb-1">Deployment</h4>
+                            <p class="text-gray-400 text-sm">Vercel, Netlify, AWS, Dll</p>
+                        </div>
+                        <div class="bg-gray-800/50 rounded-xl p-5 border border-gray-700">
+                            <div class="text-primary text-2xl mb-3">
+                                <i class="fas fa-search"></i>
+                            </div>
+                            <h4 class="font-bold mb-1">SEO Optimization</h4>
+                            <p class="text-gray-400 text-sm">Performance & visibility</p>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-8">
+                        <h4 class="text-xl font-bold mb-4">Pendekatan Kerja</h4>
+                        <ul class="space-y-3">
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-primary mr-3 mt-1"></i>
+                                <span>Komunikasi jelas & transparan</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-primary mr-3 mt-1"></i>
+                                <span>Development bertahap dengan feedback</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-primary mr-3 mt-1"></i>
+                                <span>Code yang clean & terstruktur</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-primary mr-3 mt-1"></i>
+                                <span>Testing & quality assurance</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- SERVICES SECTION -->
+    <section id="services" class="py-20 bg-gray-850">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Layanan Saya</h2>
+                <div class="w-24 h-1 bg-primary mx-auto mb-6"></div>
+                <p class="text-gray-400 max-w-3xl mx-auto">Solusi lengkap untuk kebutuhan website bisnis dan personal Anda</p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- SERVICE 1 -->
+                <div class="bg-gray-800 rounded-2xl p-8 border border-gray-700 hover:border-primary transition-all service-card group">
+                    <div class="text-primary text-4xl mb-6">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">Website Company Profile</h3>
+                    <p class="text-gray-400 mb-6">
+                        Website profesional untuk memperkenalkan bisnis, layanan, dan portofolio perusahaan. Dirancang untuk meningkatkan kredibilitas dan reach bisnis Anda.
+                    </p>
+                    <ul class="space-y-2 mb-8">
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-primary mr-3"></i>
+                            <span>Design custom & responsif</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-primary mr-3"></i>
+                            <span>CMS untuk update konten</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-primary mr-3"></i>
+                            <span>Optimasi SEO dasar</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-primary mr-3"></i>
+                            <span>Integrasi media sosial</span>
+                        </li>
+                    </ul>
+                    <div class="font-bold text-xl text-primary">Mulai dari Rp 2.5jt</div>
+                </div>
+                
+                <!-- SERVICE 2 -->
+                <div class="bg-gray-800 rounded-2xl p-8 border border-gray-700 hover:border-primary transition-all service-card group relative">
+                    <div class="absolute -top-4 right-6 bg-primary text-white px-4 py-1 rounded-full text-sm font-bold">
+                        POPULAR
+                    </div>
+                    <div class="text-primary text-4xl mb-6">
+                        <i class="fas fa-store"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">E-Commerce Website</h3>
+                    <p class="text-gray-400 mb-6">
+                        Platform jualan online lengkap dengan sistem cart, checkout, payment gateway, dan admin dashboard untuk manage produk & order.
+                    </p>
+                    <ul class="space-y-2 mb-8">
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-primary mr-3"></i>
+                            <span>Katalog produk & kategori</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-primary mr-3"></i>
+                            <span>Payment gateway (QRIS/Transfer)</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-primary mr-3"></i>
+                            <span>Admin dashboard lengkap</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-primary mr-3"></i>
+                            <span>Mobile-first responsive</span>
+                        </li>
+                    </ul>
+                    <div class="font-bold text-xl text-primary">Mulai dari Rp 5jt</div>
+                </div>
+                
+                <!-- SERVICE 3 -->
+                <div class="bg-gray-800 rounded-2xl p-8 border border-gray-700 hover:border-primary transition-all service-card group">
+                    <div class="text-primary text-4xl mb-6">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">Web Application</h3>
+                    <p class="text-gray-400 mb-6">
+                        Aplikasi web custom dengan fungsionalitas kompleks, database, user authentication, dan fitur khusus sesuai kebutuhan bisnis Anda.
+                    </p>
+                    <ul class="space-y-2 mb-8">
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-primary mr-3"></i>
+                            <span>Frontend + Backend development</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-primary mr-3"></i>
+                            <span>Database & API integration</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-primary mr-3"></i>
+                            <span>User authentication system</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-primary mr-3"></i>
+                            <span>Maintenance & support</span>
+                        </li>
+                    </ul>
+                    <div class="font-bold text-xl text-primary">Custom Price</div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <p class="text-gray-400 mb-6">*Harga dapat disesuaikan dengan kompleksitas dan kebutuhan spesifik project</p>
+                <a href="#contact" class="inline-flex items-center px-8 py-3 bg-gradient-to-r from-primary to-cyan-500 text-white rounded-lg font-semibold hover:opacity-90 transition-all">
+                    <i class="fas fa-comments mr-2"></i> Konsultasi Gratis
+                </a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- CONTACT SECTION -->
+    <section id="contact" class="py-20">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Hubungi Saya</h2>
+                <div class="w-24 h-1 bg-primary mx-auto mb-6"></div>
+                <p class="text-gray-400 max-w-3xl mx-auto">Mari diskusikan project Anda dan buat sesuatu yang luar biasa bersama</p>
+            </div>
+            
+            <div class="max-w-4xl mx-auto">
+                <div class="bg-gray-800/50 rounded-2xl p-8 border border-gray-700">
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div>
+                            <h3 class="text-2xl font-bold mb-6">Mari Berkolaborasi!</h3>
+                            <p class="text-gray-300 mb-8">
+                                Punya ide untuk website atau aplikasi? Atau ingin meng-upgrade kehadiran digital bisnis Anda? Saya siap membantu mewujudkannya.
+                            </p>
+                            
+                            <div class="space-y-6">
+                                <div class="flex items-center">
+                                    <div class="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center mr-4">
+                                        <i class="fas fa-map-marker-alt text-primary"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold">Lokasi</h4>
+                                        <p class="text-gray-400">Gresik, Jawa Timur</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex items-center">
+                                    <div class="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center mr-4">
+                                        <i class="fas fa-clock text-primary"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold">Jam Kerja</h4>
+                                        <p class="text-gray-400">24 Jam</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex items-center">
+                                    <div class="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center mr-4">
+                                        <i class="fas fa-paper-plane text-primary"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold">Respon Cepat</h4>
+                                        <p class="text-gray-400">Maksimal 24 jam pada hari kerja</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <form id="contactForm" class="space-y-6">
+                                <div>
+                                    <label class="block text-gray-300 mb-2">Nama Lengkap</label>
+                                    <input type="text" class="w-full bg-gray-900 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-primary transition-colors" required>
+                                </div>
+                                
+                                <div>
+                                    <label class="block text-gray-300 mb-2">Email</label>
+                                    <input type="email" class="w-full bg-gray-900 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-primary transition-colors" required>
+                                </div>
+                                
+                                <div>
+                                    <label class="block text-gray-300 mb-2">Jenis Project</label>
+                                    <select class="w-full bg-gray-900 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-primary transition-colors">
+                                        <option value="">Pilih jenis project</option>
+                                        <option value="company-profile">Website Company Profile</option>
+                                        <option value="ecommerce">E-Commerce Website</option>
+                                        <option value="web-app">Web Application</option>
+                                        <option value="other">Lainnya</option>
+                                    </select>
+                                </div>
+                                
+                                <div>
+                                    <label class="block text-gray-300 mb-2">Pesan</label>
+                                    <textarea rows="4" class="w-full bg-gray-900 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-primary transition-colors" required></textarea>
+                                </div>
+                                
+                                <button type="submit" class="w-full bg-primary text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors">
+                                    <i class="fas fa-paper-plane mr-2"></i> Kirim Pesan
+                                </button>
+                            </form>
+                            
+                            <p class="text-gray-500 text-sm mt-6 text-center">
+                                Atau hubungi langsung via WhatsApp untuk respon lebih cepat
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- FOOTER -->
+    <footer class="bg-gray-900 py-12 border-t border-gray-800">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-10 h-10 bg-gradient-to-br from-primary to-cyan-400 rounded-lg flex items-center justify-center">
+                            <i class="fas fa-code text-white text-xl"></i>
+                        </div>
+                        <span class="text-xl font-bold bg-gradient-to-r from-primary to-cyan-400 bg-clip-text text-transparent">KeJaa</span>
+                    </div>
+                    <p class="text-gray-400 mt-4">Freelance Programmer & Frontend Developer</p>
+                </div>
+                
+                <div class="flex space-x-6">
+                    <a href="https://wa.me/62881027126485" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-primary transition-colors">
+                        <i class="fab fa-whatsapp"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-500 text-sm">
+                <p>&copy; <span id="currentYear"></span> Muhammad Keyzha Putra Setiawan (KeJaa). All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- BACK TO TOP -->
+    <button id="backToTop" class="fixed bottom-6 right-6 w-12 h-12 bg-primary text-white rounded-full shadow-lg hover:bg-blue-700 transition-all opacity-0">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+    
+    <!-- GSAP ANIMATIONS & INTERACTIVITY -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set current year
+            document.getElementById('currentYear').textContent = new Date().getFullYear();
+            
+            // Mobile menu toggle
+            const menuBtn = document.getElementById('menuBtn');
+            const mobileMenu = document.getElementById('mobileMenu');
+            
+            menuBtn.addEventListener('click', function() {
+                mobileMenu.classList.toggle('hidden');
+                menuBtn.innerHTML = mobileMenu.classList.contains('hidden') 
+                    ? '<i class="fas fa-bars"></i>' 
+                    : '<i class="fas fa-times"></i>';
+            });
+            
+            // Close mobile menu when clicking a link
+            document.querySelectorAll('#mobileMenu a').forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                    menuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+                });
+            });
+            
+            // Back to top button
+            const backToTop = document.getElementById('backToTop');
+            
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 300) {
+                    backToTop.classList.remove('opacity-0');
+                    backToTop.classList.add('opacity-100');
+                } else {
+                    backToTop.classList.remove('opacity-100');
+                    backToTop.classList.add('opacity-0');
+                }
+            });
+            
+            backToTop.addEventListener('click', function() {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+            
+            // Contact form submission
+            document.getElementById('contactForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                alert('Terima kasih! Pesan Anda telah dikirim. Saya akan menghubungi Anda dalam waktu 24 jam.');
+                this.reset();
+            });
+            
+            // Animate skill bars on scroll
+            const skillBars = document.querySelectorAll('.skill-bar');
+            
+            // GSAP ANIMATIONS
+            // Register ScrollTrigger plugin
+            gsap.registerPlugin(ScrollTrigger);
+            
+            // Hero title animation
+            gsap.from('.hero-title span', {
+                duration: 1.2,
+                y: 50,
+                opacity: 0,
+                stagger: 0.2,
+                ease: 'power3.out'
+            });
+            
+            // Service cards animation
+            gsap.from('.service-card', {
+                scrollTrigger: {
+                    trigger: '#services',
+                    start: 'top 80%',
+                    toggleActions: 'play none none reverse'
+                },
+                duration: 1,
+                y: 50,
+                opacity: 0,
+                stagger: 0.2,
+                ease: 'power3.out'
+            });
+            
+            // Skill bars animation
+            skillBars.forEach(bar => {
+                gsap.to(bar, {
+                    scrollTrigger: {
+                        trigger: bar.parentElement.parentElement,
+                        start: 'top 80%',
+                        toggleActions: 'play none none reverse'
+                    },
+                    width: bar.getAttribute('data-width') + '%',
+                    duration: 1.5,
+                    ease: 'power3.out'
+                });
+            });
+            
+            // Floating elements continuous animation
+            gsap.to('.floating-element', {
+                y: -20,
+                duration: 2,
+                repeat: -1,
+                yoyo: true,
+                ease: 'sine.inOut'
+            });
+            
+            // Navbar scroll effect
+            gsap.to('nav', {
+                scrollTrigger: {
+                    trigger: 'body',
+                    start: '100px top',
+                    end: 'bottom bottom',
+                    toggleClass: {targets: 'nav', className: 'shadow-lg'}
+                }
+            });
+            
+            // Parallax effect for hero
+            gsap.to('.hero-title', {
+                scrollTrigger: {
+                    trigger: '#home',
+                    start: 'top top',
+                    end: 'bottom top',
+                    scrub: true
+                },
+                y: 100,
+                opacity: 0.5
+            });
+            
+            // Text reveal animations
+            gsap.utils.toArray('section h2, section h3').forEach(heading => {
+                gsap.from(heading, {
+                    scrollTrigger: {
+                        trigger: heading,
+                        start: 'top 90%',
+                        toggleActions: 'play none none reverse'
+                    },
+                    duration: 1,
+                    y: 30,
+                    opacity: 0,
+                    ease: 'power3.out'
+                });
+            });
+            
+            // Contact form animation
+            gsap.from('#contactForm', {
+                scrollTrigger: {
+                    trigger: '#contactForm',
+                    start: 'top 80%',
+                    toggleActions: 'play none none reverse'
+                },
+                duration: 1,
+                x: -50,
+                opacity: 0,
+                ease: 'power3.out'
+            });
+        });
+        
+        // Additional protection against curl/wget
+        window.onload = function() {
+            // Clear any console attempts
+            console.clear();
+            
+            // Detect if page is being iframed
+            if (window.self !== window.top) {
+                document.body.innerHTML = '<div class="flex items-center justify-center h-screen bg-dark text-white"><div class="text-center"><h1 class="text-2xl mb-4">Access Restricted</h1><p>Direct access required</p></div></div>';
+            }
+        };
+    </script>
+</body>
+</html>
